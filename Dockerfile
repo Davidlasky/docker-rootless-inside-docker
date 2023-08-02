@@ -8,9 +8,9 @@ FROM ubuntu:20.04
 #Replace ubuntu version with custom image if needed
 
 #change the IP address of following proxies to your server's IP, or use the docker0 IP address(run ifconfig to show) if cntlm is not configured
-#Comment out if not needed
-ENV http_proxy http://YOUR-DOCKER-IP-ADDRESS:3128
-ENV https_proxy http://YOUR-DOCKER-IP-ADDRESS:3128
+#Uncomment out if needed
+#ENV http_proxy http://YOUR-DOCKER-IP-ADDRESS:3128
+#ENV https_proxy http://YOUR-DOCKER-IP-ADDRESS:3128
 
 RUN apt update \
      && apt upgrade -y \
@@ -27,7 +27,6 @@ RUN apt update \
      iproute2 \
      #we prefer to use fuse-overlayfs as storage driver in the container since the default overlay2 is not working in DinD(docker inside docker) mode.
      fuse-overlayfs
-
 
 ENV USER john
 ENV UID 1000
