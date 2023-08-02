@@ -25,7 +25,7 @@ RUN apt update \
      kmod \
      libcap2-bin \
      iproute2 \
-     #we prefer to use fuse-overlayfs as storage driver in the container since the default overlay2 is not working in DinD(docker inside docker) mode.
+     #we prefer to use fuse-overlayfs as storage driver in the container since the default overlay2 is not working in DinD(docker in docker) mode.
      fuse-overlayfs
 
 ENV USER john
