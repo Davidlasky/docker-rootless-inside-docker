@@ -29,6 +29,9 @@ docker build -t myimage .
 docker run --privileged --rm -it --security-opt seccomp=unconfined --security-opt apparmor=unconfined -it myimage
 ```
 
+### Entrypoint
+The entrypoint.sh file is made specifically for rootless containers such as podman and docker rootless mode, where the default user in the container is root with id 0. In prodcution environment, we need to mount files and directories into the container, which by default are all owned by root:root(USER:GROUP). We need to change the USER to the real user name to have correct access to the moutned files and directories,  pretending we are the user, yet we ARE STILL root.
+
 ### Start Docker
 Once we are in the container, run 
 ```
