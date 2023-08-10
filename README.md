@@ -30,7 +30,9 @@ docker run --privileged --rm -it --security-opt seccomp=unconfined --security-op
 ```
 
 ### Entrypoint
-The entrypoint.sh file is made specifically for rootless containers such as podman and docker rootless mode, where the default user in the container is root with id 0. In production environment, we need to mount files and directories into the container, which by default are all owned by root:root(USER:GROUP). We need to change the USER to the real user name to have correct access to the moutned files and directories,  pretending we are the user, yet we ARE STILL root.
+The entrypoint.sh file is made specifically for rootless containers such as podman and docker rootless mode, where the default user in the container is root with id 0. In production environment, we need to mount files and directories into the container, which by default are all owned by root:root(USER:GROUP). We need to change the USER to the real user name to have correct access to the moutned files and directories,  pretending we are the user, yet we ARE STILL root. 
+
+It's worth noting that even though our user name is changed to the real user name on the host machine, our id is still 0, so from the container's perspective of view, we're still root with UID and GID 0. This id issue may cause some troubles. Watch out for apps and verifications that read user id UID.
 
 ### Start Docker
 Once we are in the container, run the following command to run the docker daemon and start the service.
