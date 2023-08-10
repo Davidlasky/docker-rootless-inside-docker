@@ -1,5 +1,5 @@
 # Docker-rootless-in-Docker
-This repo is specifically made for Corp APT mirror maintainers whose companies are mainly using Docker.io or Docker-ce on Ubuntu 20.04(LTS). The Dockerfile is written for testing production environment and the least amount of dependencies of Docker Rootless only.
+This repo is specifically made for Corp APT mirror maintainers whose companies are mainly using Docker.io or Docker-ce on Ubuntu 20.04(LTS). The Dockerfile is written for testing PRODUCTION environment and the least amount of dependencies of Docker Rootless only.
 
 ( ゜- ゜)つロ Cheers~
 
@@ -25,6 +25,7 @@ docker build -t myimage .
 ```
 
 ### Run
+add " -v " to mount directories into the containers as needed
 ```
 docker run --privileged --rm -it --security-opt seccomp=unconfined --security-opt apparmor=unconfined -it myimage
 ```
